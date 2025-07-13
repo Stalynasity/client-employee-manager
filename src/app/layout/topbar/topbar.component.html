@@ -1,0 +1,27 @@
+<p-menu
+  [model]="items"
+  [style]="{ width: '100%', maxWidth: '240px', height: '25%' }"
+  class="w-full text-base"
+>
+  <ng-template #item let-item>
+    <ng-container *ngIf="item.route; else elseBlock">
+      <a
+        [routerLink]="item.route"
+        class="p-menu-item-link flex items-center gap-2 px-3 py-2 rounded transition-colors hover:bg-surface-200 dark:hover:bg-gray-700"
+      >
+        <i [class]="item.icon" class="text-base"></i>
+        <span class="truncate">{{ item.label }}</span>
+      </a>
+    </ng-container>
+
+    <ng-template #elseBlock>
+      <a
+        [href]="item.url"
+        class="p-menu-item-link flex items-center gap-2 px-3 py-2 rounded transition-colors hover:bg-surface-200 dark:hover:bg-gray-700"
+      >
+        <i [class]="item.icon" class="text-base"></i>
+        <span class="truncate">{{ item.label }}</span>
+      </a>
+    </ng-template>
+  </ng-template>
+</p-menu>
