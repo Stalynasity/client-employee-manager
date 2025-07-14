@@ -35,8 +35,8 @@ export interface EmpleadoResponseDTO {
 }
 
 export enum EstadoEmpleado {
-  ACTIVO = 1,
-  INACTIVO = 0
+  A = 1,
+  I = 0
 }
 
 export interface EmpleadoMasJovenResponseDTO {

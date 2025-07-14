@@ -50,8 +50,8 @@ export class EmpleadosComponent implements OnInit {
   empleados: Empleado[] = [];
 
   estadoOptions = [
-    { label: 'Activo', value: 1 },
-    { label: 'Inactivo', value: 0 },
+    { label: 'A', value: 1 },
+    { label: 'I', value: 0 },
   ];
 
   departamentos: { id: number; nombre: string }[] = [];
@@ -77,9 +77,11 @@ export class EmpleadosComponent implements OnInit {
     });
 
     this.departmentService.listaDepa().subscribe({
-      next: (res) => (this.departamentos = res.data),
-      error: (err) => console.error('Error al cargar departamentos', err),
-    });
+    next: (res) => {
+      this.departamentos = res.data.filter(dep => dep.estado === 'A');
+    },
+    error: (err) => console.error('Error al cargar departamentos', err),
+  });
 
     this.employeeService.getListaEmpleados().subscribe({
       next: (res: BaseResponse<Empleado[]>) => {

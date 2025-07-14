@@ -30,7 +30,7 @@ import { BaseResponse } from '../../core/Models/BaseResponse';
 export class DepartamentosComponent implements OnInit {
   nuevoDepartamento: DepartamentoRequestDTO = {
     nombre: '',
-    descripcion: 'ACTIVO',
+    descripcion: 'A',
   };
   idEmpleadoEliminar: number | null = null;
 idDeptoEliminar: number | null = null;
@@ -49,14 +49,14 @@ idDeptoEliminar: number | null = null;
   cargarDatos(): void {
   this.deptoService.listaDepa().subscribe({
     next: (res) => {
-      this.departamentos = res.data.filter(dep => dep.estado === 'ACTIVO');
+      this.departamentos = res.data.filter(dep => dep.estado === 'A');
     },
     error: (err) => console.error('Error al cargar departamentos', err),
   });
 
   this.empService.getListaEmpleados().subscribe({
     next: (res) => {
-      this.empleados = res.data.filter(emp => emp.estado === 'ACTIVO');
+      this.empleados = res.data.filter(emp => emp.estado === 'A');
     },
     error: (err) => console.error('Error al cargar empleados', err),
   });
