@@ -50,8 +50,8 @@ export class EmpleadosComponent implements OnInit {
   empleados: Empleado[] = [];
 
   estadoOptions = [
-    { label: 'A', value: 1 },
-    { label: 'I', value: 0 },
+    { label: 'ACTIVO', value: 1 },
+    { label: 'INACTIVO', value: 0 },
   ];
 
   departamentos: { id: number; nombre: string }[] = [];
