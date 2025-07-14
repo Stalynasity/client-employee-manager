@@ -1,1 +1,110 @@
-<p>empleados works!</p>
+<p-toast></p-toast>
+
+<form [formGroup]="empleadoForm" (ngSubmit)="crearEmpleado()"
+  class="p-fluid p-4 border-round surface-card shadow-1 max-w-4xl mx-auto">
+  <div class="text-lg font-semibold mb-4">Registrar Empleado</div>
+
+  <div class="grid formgrid gap-2">
+
+    <div class="field col-12 md:col-4">
+      <label for="nombres" class="block text-sm font-bold mb-1">Nombres*</label>
+      <input id="nombres" pInputText formControlName="nombres" class="w-full" />
+      <small *ngIf="empleadoForm.get('nombres')?.invalid && empleadoForm.get('nombres')?.touched"
+        class="text-red-500">Campo obligatorio</small>
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="apellidos" class="block text-sm font-bold mb-1">Apellidos*</label>
+      <input id="apellidos" pInputText formControlName="apellidos" class="w-full" />
+      <small *ngIf="empleadoForm.get('apellidos')?.invalid && empleadoForm.get('apellidos')?.touched"
+        class="text-red-500">Campo obligatorio</small>
+    </div>
+
+    <div class="field col-12 md:col-3">
+      <label for="edad" class="block text-sm font-bold mb-1">Edad</label>
+      <input id="edad" type="number" pInputText formControlName="edad" class="w-full" min="18" (keypress)="preventMinus($event)" />
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="rol" class="block text-sm font-bold mb-1">Rol</label>
+      <input id="rol" pInputText formControlName="rol" class="w-full" />
+    </div>
+
+    <div class="field col-12 md:col-4">
+      <label for="salario" class="block text-sm font-bold mb-1">Salario</label>
+      <p-inputNumber inputId="salario" formControlName="salario" [min]="0" mode="decimal" class="w-full" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+      <label for="fechaIngreso" class="block text-sm font-bold mb-1">Fecha Ingreso</label>
+      <p-datepicker formControlName="fechaIngreso" inputId="fechaIngreso" showIcon dateFormat="yy-mm-dd"
+        class="w-full" />
+    </div>
+
+    <div class="field col-12 md:col-3">
+      <label for="fechaSalida" class="block text-sm font-bold mb-1">Fecha Salida</label>
+      <p-datepicker formControlName="fechaSalida" inputId="fechaSalida" showIcon dateFormat="yy-mm-dd" class="w-full" />
+      <small class="text-gray-500">Opcional</small>
+    </div>
+
+    <div class="field col-12 md:col-2">
+      <label for="estado" class="block text-sm font-bold mb-1">Estado</label>
+      <p-select inputId="estado" formControlName="estado" class="w-full" [options]="estadoOptions" optionLabel="label"
+        optionValue="value">
+      </p-select>
+    </div>
+
+    <div class="field col-12 md:col-6">
+      <label for="departamentoId" class="block text-sm font-bold mb-1">Departamento</label>
+      <p-select inputId="departamentoId" formControlName="departamentoId" class="w-full" [options]="departamentos"
+        optionLabel="nombre" optionValue="id" placeholder="Seleccionar departamento">
+      </p-select>
+    </div>
+
+    <div class="col-12 text-right mt-2">
+      <button type="submit" pButton label="Crear Empleado" icon="pi pi-check"
+        [disabled]="empleadoForm.invalid"></button>
+    </div>
+
+  </div>
+</form>
+
+
+<p-card class="shadow-2xl p-4">
+  <h2 class="text-xl font-semibold mb-4">Lista de Empleados</h2>
+
+  <p-table [value]="empleados" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Nombre</th>
+        <th>Edad</th>
+        <th>Rol</th>
+        <th>Salario</th>
+        <th>Ingreso</th>
+        <th>Salida</th>
+        <th>Estado</th>
+        <th>Departamento</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-emp>
+      <tr>
+        <td>{{ emp.nombres }} {{ emp.apellidos }}</td>
+        <td>{{ emp.edad }}</td>
+        <td>{{ emp.rol }}</td>
+        <td>${{ emp.salario }}</td>
+        <td>{{ emp.fechaIngreso }}</td>
+        <td>{{ emp.fechaSalida || '---' }}</td>
+        <td>
+          <span [ngClass]="{
+            'text-green-600 font-medium': emp.estado === 'ACTIVO',
+            'text-red-500 font-medium': emp.estado !== 'ACTIVO'
+          }">
+            {{ emp.estado }}
+          </span>
+        </td>
+        <td>{{ emp.departamento.nombre }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</p-card>

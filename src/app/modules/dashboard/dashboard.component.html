@@ -1,1 +1,44 @@
-<p>dashboard works!</p>
+<div class="p-1">
+  <h2 class="text-2xl font-bold mb-4">Opciones de Consulta</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+    <p-card header="Salario más alto">
+      <p>Consulta el empleado con el salario más alto.</p>
+      <button pButton label="Consultar" icon="pi pi-money-bill" class="mt-3 w-full"
+        (click)="consultarSalarioMasAlto()"></button>
+    </p-card>
+
+
+    <p-card header="Edad más baja">
+      <p>Consulta el empleado más joven registrado.</p>
+      <button pButton label="Consultar" icon="pi pi-user" class="mt-3 w-full" (click)="consultarEdadMasBaja()"></button>
+    </p-card>
+
+
+    <p-card header="Ingresos Recientes">
+      <p>Cantidad de empleados que ingresaron el último mes.</p>
+      <button pButton label="Consultar" icon="pi pi-users" class="mt-3 w-full"
+        (click)="consultarIngresosUltimoMes()"></button>
+    </p-card>
+  </div>
+
+  <!-- Resultado -->
+  <div class="mt-6 space-y-4">
+    <p-toast></p-toast>
+
+    <p-panel header="Resultado - Salario más alto" *ngIf="salarioMasAlto">
+      <p>Nombre: {{ salarioMasAlto.nombres }} {{ salarioMasAlto.apellidos }}</p>
+      <p>Salario: ${{ salarioMasAlto.salario }}</p>
+    </p-panel>
+
+    <p-panel header="Resultado - Edad más baja" *ngIf="edadMasBaja">
+      <p>Nombre: {{ edadMasBaja.nombres }} {{ edadMasBaja.apellidos }}</p>
+      <p>Edad: {{ edadMasBaja.edad }} años</p>
+    </p-panel>
+
+    <p-panel header="Resultado - Empleados recientes" *ngIf="empleadosUltimoMes !== undefined">
+      <p>Total de empleados ingresados el último mes: {{ empleadosUltimoMes }}</p>
+    </p-panel>
+  </div>
+</div>

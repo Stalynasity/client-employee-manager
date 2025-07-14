@@ -8,3 +8,9 @@ export interface DepartamentoResponseDTO {
   nombre: string;
   descripcion: string;
 }
+
+export interface DepartamentoModal {
+  id: number;
+  nombre: string;
+  estado: string;
+}

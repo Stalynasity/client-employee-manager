@@ -11,6 +11,10 @@ export const routes: Routes = [
     loadComponent: () => import('./modules/empleados/empleados.component').then(m => m.EmpleadosComponent),
   },
   {
+    path: 'departamentos',
+    loadComponent: () => import('./modules/departamentos/departamentos.component').then(m => m.DepartamentosComponent),
+  },
+  {
     path: '**',
     redirectTo: '',
   }

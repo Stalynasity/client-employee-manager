@@ -1,3 +1,18 @@
+import { DepartamentoResponseDTO } from "./DepartamentoDTO";
+
+export interface Empleado {
+  id: number;
+  nombres: string;
+  apellidos: string;
+  edad: number;
+  rol: string;
+  salario: number;
+  fechaIngreso: string;
+  fechaSalida: string | null;
+  estado: string;
+  departamento: DepartamentoResponseDTO;
+}
+
 export interface EmpleadoRequestDTO {
   nombres: string;
   apellidos: string;
@@ -20,8 +35,8 @@ export interface EmpleadoResponseDTO {
 }
 
 export enum EstadoEmpleado {
-  ACTIVO = 0,
-  INACTIVO = 1
+  ACTIVO = 1,
+  INACTIVO = 0
 }
 
 export interface EmpleadoMasJovenResponseDTO {

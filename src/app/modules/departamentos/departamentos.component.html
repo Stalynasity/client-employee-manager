@@ -1,0 +1,38 @@
+<p-toast></p-toast>
+
+<div class="surface-card p-4 border-round shadow-2 m-auto" style="max-width: 600px; width: 100%;">
+
+  <h2 class="text-xl font-bold mb-4">Gestión de Departamentos y Empleados</h2>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2">Crear Departamento</h3>
+    <div class="flex flex-col md:flex-row gap-2">
+      <input type="text" pInputText [(ngModel)]="nuevoDepartamento.nombre" placeholder="Nombre" class="w-full" />
+      <button pButton label="Crear" icon="pi pi-plus" class="w-full md:w-auto" (click)="crearDepartamento()"></button>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2 mt-4">Eliminar Departamento</h3>
+    <p-select [options]="departamentos" [(ngModel)]="idDeptoEliminar" [optionLabel]="'nombre'" [optionValue]="'id'"
+      placeholder="Seleccionar departamento" class="w-full mb-2"></p-select>
+    <button pButton label="Eliminar Departamento" icon="pi pi-trash" class="p-button-danger w-full"
+      (click)="eliminarDepartamento()" [disabled]="!idDeptoEliminar"></button>
+  </div>
+
+  <div>
+    <h3 class="text-lg font-semibold mb-2 mt-4">Eliminar Empleado</h3>
+    <p-select [options]="empleados" [(ngModel)]="idEmpleadoEliminar" [optionLabel]="'nombres'" [optionValue]="'id'"
+      placeholder="Seleccionar empleado" class="w-full mb-2">
+      <ng-template let-emp pTemplate="item">
+        <div class="flex flex-col">
+          <span class="font-medium">{{ emp.nombres }} {{ emp.apellidos }}</span>
+          <small class="text-gray-500 text-xs">{{ emp.departamento.nombre }}</small>
+        </div>
+      </ng-template>
+    </p-select>
+
+    <button pButton label="Eliminar Empleado" icon="pi pi-user-minus" class="p-button-danger w-full"
+      (click)="eliminarEmpleado()" [disabled]="!idEmpleadoEliminar"></button>
+  </div>
+</div>

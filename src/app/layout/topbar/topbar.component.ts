@@ -37,6 +37,13 @@ export class TopbarComponent implements OnInit {
             command: () => {
               this.router.navigate(['/empleados']);
             }
+          },
+          {
+            label: 'Parametros',
+            icon: 'pi pi-users',
+            command: () => {
+              this.router.navigate(['/departamentos']);
+            }
           }
         ]
       }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { EmpleadoMasJovenResponseDTO, EmpleadoRequestDTO, EmpleadoResponseDTO, EmpleadoSalarioMasAltoResponseDTO } from '../Models/EmpleadoDTO';
+import { Empleado, EmpleadoMasJovenResponseDTO, EmpleadoRequestDTO, EmpleadoResponseDTO, EmpleadoSalarioMasAltoResponseDTO } from '../Models/EmpleadoDTO';
 import { environment } from '../../../environments/environment';
 import { BaseResponse } from '../Models/BaseResponse';
 
@@ -44,4 +44,11 @@ export class EmployeeService {
       `${this.baseUrl}/countLastMonth`
     );
   }
+
+  getListaEmpleados(): Observable<BaseResponse<Empleado[]>> {
+    return this.http.get<BaseResponse<Empleado[]>>(
+      `${this.baseUrl}/list`
+    );
+  }
+
 }

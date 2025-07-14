@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { DepartamentoRequestDTO, DepartamentoResponseDTO } from '../Models/DepartamentoDTO';
+import { DepartamentoRequestDTO, DepartamentoResponseDTO, DepartamentoModal } from '../Models/DepartamentoDTO';
 import { BaseResponse } from '../Models/BaseResponse';
 import { environment } from '../../../environments/environment';
 
@@ -21,4 +21,9 @@ export class DepartmentService {
   deleteDepartment(id: number): Observable<BaseResponse<void>> {
     return this.http.post<BaseResponse<void>>(`${this.baseUrl}/delete/${id}`, {});
   }
+
+  listaDepa(): Observable<BaseResponse<Array<DepartamentoModal>>> {
+    return this.http.get<BaseResponse<Array<DepartamentoModal>>>(`${this.baseUrl}/listdepartamento`);
+  }
+
 }
